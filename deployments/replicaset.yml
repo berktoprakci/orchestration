@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set
+  labels:
+    app: replica-nginx # nothing to do with selecting on pods
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-nginx # must match
+  template:
+    metadata:
+      labels:
+        app: my-nginx # must match
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi" #128 MB
+            cpu: "200m" #200 millicpu (1000m = 1 CPU)

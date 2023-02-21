@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+  labels:
+    app: web # nothing to do with selecting on pods
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web # must match
+  template:
+    metadata:
+      labels:
+        app: web # must match
+    spec: 
+      terminationGracePeriodSeconds: 1
+      containers:
+      - name: web-pod
+        image: berktoprakci/app:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

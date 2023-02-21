@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  labels:
+    app: app-config
+data:
+  username: tester
+  password: "4231"
+  user.admin: "false"
+  user.log.level: "2"
